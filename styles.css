@@ -1,0 +1,152 @@
+/* GLOBAL RESETS AND VARIABLES */
+:root {
+    /* Color palette based on Shirley Pre-School logo */
+    --primary-color: #E72B41; /* A warm, engaging color */
+    --secondary-color: #499A73; /* A bright, hopeful accent */
+    --text-color: #333;
+    --light-bg: #e2e32a;
+    --white: #F7F9F9;
+    --font-primary: 'Poppins', sans-serif;
+}
+
+/* Reset basic browser styles for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--text-color);
+    background-color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scroll on mobile */
+}
+
+/* Typography for Mobile-First Readability */
+h1 { font-size: 2.2em; font-weight: 800; line-height: 1.1; }
+h2 { font-size: 1.8em; font-weight: 600; margin-bottom: 0.5em; }
+h3 { font-size: 1.4em; font-weight: 600; margin-top: 1em; }
+p { margin-bottom: 1em; }
+
+/* Utility Classes & Containers */
+.container {
+    width: 90%; /* Mobile-first width */
+    max-width: 1200px; /* Max width for desktop */
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Buttons (Call-to-Action) */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin-top: 0px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #e2e32a;
+    border-color: #499A73;
+}
+
+/* Mobile-Specific Navigation Structure */
+#main-header {
+    background: var(--white);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    height: 100px; /* Logo height */
+}
+
+.nav-links {
+    /* Initially hidden on mobile */
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Below the header */
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    align-items: center;
+}
+
+.nav-links.active {
+    display: flex; /* Show when active */
+}
+
+.nav-links a {
+    padding: 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    text-align: center;
+    border-bottom: 1px solid var(--light-bg);
+}
+
+/* Hamburger Menu Button (Mobile Only) */
+.menu-toggle {
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* Media Query for Desktop (Design Enhancements) */
+@media (min-width: 768px) {
+    /* Reset navigation for desktop */
+    .nav-links {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        width: auto;
+        box-shadow: none;
+    }
+
+    .nav-links a {
+        border-bottom: none;
+        margin-left: 20px;
+        padding: 0;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+}
+
+/* Footer Styles */
+#main-footer {
+    background-color: var(--text-color);
+    color: var(--light-bg);
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+#main-footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin: 0 10px;
+}

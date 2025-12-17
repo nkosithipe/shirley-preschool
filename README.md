@@ -11,10 +11,10 @@ A mobile-first, responsive website developed for **Shirley Pre-School**, a rural
 * **Structure:** Semantic HTML5
 * **Styling:** CSS3 (Flexbox/Grid) - Mobile First methodology
 * **Interactivity:** Vanilla JavaScript (ES6+)
-* **Hosting:** GitHub Pages (Planned but later to be transferred to a pre-school in question dedicated domain name)
+* **Hosting:** GitHub Pages (Current) - To be migrated to a dedicated custom domain managed by the Pre-School.
 
 ## 🤝 Contributing
-This project is currently maintained by an establishment in progress Digital Agency whose name is withheld for fear of domain name snatching, since the agency has not registered their domain name as yet.
+This project is currently maintained by an emerging Digital Agency (operating in stealth mode pending official launch). The agency is volunteering these services to support the Shirley Pre-School.
 
 ## 📄 License
 This project is licensed under the MIT License.
