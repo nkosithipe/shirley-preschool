@@ -42,7 +42,7 @@ p { margin-bottom: 1em; }
 .btn {
     display: inline-block;
     padding: 12px 25px;
-    margin-top: 0px;
+    margin-top: 0px; /*0px top margin brings the primary or last navigation menu button to horizontally align with the rest of the navigation menu buttons*/
     font-weight: 600;
     text-decoration: none;
     border-radius: 5px;
@@ -60,6 +60,7 @@ p { margin-bottom: 1em; }
 .btn-primary:hover {
     background-color: #e2e32a;
     border-color: #499A73;
+    color: var(--text-color);
 }
 
 /* Mobile-Specific Navigation Structure */
@@ -114,7 +115,46 @@ p { margin-bottom: 1em; }
     color: var(--primary-color);
 }
 
-/* Media Query for Desktop (Design Enhancements) */
+/* Hero Image Container */
+.hero-image-frame {
+    width: 100%;
+    max-height: 400px; /* Limits height on mobile so text stays visible */
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.hero-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops the square image to fit the rectangle */
+    object-position: center; /* Keeps the building/tank in view */
+    display: block;
+}
+
+/* Hero Buttons Container */
+.hero-btns {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically*/
+    align-items: flex-start; /* Align buttons to the left */
+    gap: 5px; /* Space between buttons */
+    margin-top: 5px;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color); 
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-bg);
+    color: var(--primary-color);
+    background-color: transparent;   
+}
+
+/* Media Query for Desktop (Design Enhancements/Adjustments) */
 @media (min-width: 768px) {
     /* Reset navigation for desktop */
     .nav-links {
@@ -133,6 +173,31 @@ p { margin-bottom: 1em; }
 
     .menu-toggle {
         display: none;
+    }
+
+    #hero {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        padding: 60px 0;
+    }
+
+    .hero-content {
+        flex: 1;
+    }
+
+    .hero-image-frame {
+        flex: 1;
+        max-height: 500px; /* Allows it to be taller on desktop */
+        margin-top: 0;
+    }
+}
+
+/* Ensure buttons take full width only on very small screens, 
+   otherwise they will stay as wide as their text but aligned left. */
+@media (max-width: 480px) {
+    .btn {
+        width: 100%; /* Makes buttons full-width on small phones for easier tapping */
     }
 }
 
