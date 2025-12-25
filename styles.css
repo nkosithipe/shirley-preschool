@@ -63,6 +63,9 @@ p { margin-bottom: 1em; }
     color: var(--text-color);
 }
 
+#raffle-rules-btn {color: var(--white);}
+#raffle-rules-btn:hover {color: var(--text-color);}
+
 /* Mobile-Specific Navigation Structure */
 #main-header {
     background: var(--white);
@@ -114,7 +117,11 @@ p { margin-bottom: 1em; }
     cursor: pointer;
     color: var(--primary-color);
 }
-
+/* Hero Container */
+/*#hero {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 /* Hero Image Container */
 .hero-image-frame {
     width: 100%;
@@ -142,16 +149,110 @@ p { margin-bottom: 1em; }
     margin-top: 5px;
 }
 
+/* Secondary Button - Animated Underline Version */
 .btn-secondary {
     background-color: transparent;
-    color: var(--secondary-color); 
+    color: var(--secondary-color);
     border: none;
+    position: relative; /* Required so the line stays attached to the button */
+    padding: 10px 0 0 0;
+    margin-bottom: 0;    /* Adjusted padding for a cleaner look with the line */
+    transition: color 0.3s ease;
+}
+
+/* Creating the "invisible" line */
+.btn-secondary::after {
+    content: '';
+    position: absolute;
+    width: 0;              /* Start with no width */
+    height: 2px;           /* Thickness of the line */
+    bottom: 0;
+    left: 50%;             /* Start from the middle */
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%); /* Keeps it perfectly centered while growing */
+}
+
+/* Hover State - The line grows to 100% width */
+.btn-secondary:hover::after {
+    width: 100%;
 }
 
 .btn-secondary:hover {
+    color: var(--primary-color); /* Subtle color shift on hover */
+    background-color: transparent; /* Kept transparent*/
+}
+
+/* The journey - Story block section */
+#the-journey {
+    padding-top: 20px;
+   /* margin-top: 0px;*/ 
+}
+
+.section-header {
+    text-align: center; /* Centers the main title and subtext */
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.story-block {
+    display: flex;
+    flex-direction: column; /* Stack on mobile */
+    gap: 30px;
+    margin-bottom: 60px;
+    align-items: flex-start;
+}
+
+.story-text h3 {
+    margin-top: 0; /* Ensures the heading starts exactly where the image starts */
+    color: var(--text-color);
+}
+
+.story-img img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/*Responsive Photo Grid */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+    gap: 15px;
+    margin: 20px 0;
+    width: 100%; /* Ensures photos stay within container */
+}
+
+.photo-grid img {
+    width: 100%;
+    height: 120px; /* Fixed/Constant height for uniformity */
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+/*Centered Story Bridge (CTA) */
+.story-bridge {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers items horizontally */
+    gap: 20px;
+    padding: 60px 20px;
     background-color: var(--light-bg);
-    color: var(--primary-color);
-    background-color: transparent;   
+    border-radius: 15px;
+}
+
+.story-bridge .hero-btns {
+    align-items: center; /* Ensures stacked buttons are centered */
+}
+
+/* Donor Link Style */
+.donor-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
 }
 
 /* Media Query for Desktop (Design Enhancements/Adjustments) */
@@ -191,6 +292,59 @@ p { margin-bottom: 1em; }
         max-height: 500px; /* Allows it to be taller on desktop */
         margin-top: 0;
     }
+
+    .story-block {
+        flex-direction: row; /* Side-by-side or Zigzag on desktop */
+        align-items: center; /* Center text and image vertically */
+        gap: 60px;
+    }
+
+    .story-text {
+        flex: 1
+    }
+    
+    .story-block.reverse {
+        flex-direction: row-reverse; /* Zigzag effect */
+    }
+
+    .story-text, .story-img {
+        flex: 1;
+    }
+
+    /* Nested Photo Grid Improvements */
+    .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns on desktop for this block */
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.photo-grid img {
+    height: 100px; /* Smaller height because it's inside a text block */
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.story-note {
+    font-style: italic;
+    color: var(--secondary-color);
+    border-left: 3px solid var(--primary-color);
+    padding-left: 15px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+}
+
+@media (max-width: 600px) {
+    /* Mobile grid outlay */
+    .photo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+        /* Prevent one image from taking the whole screen */
+    }
+    
+    .photo-grid img {
+        height: 100px; /* Smaller height for mobile */
+    }
 }
 
 /* Ensure buttons take full width only on very small screens, 
@@ -198,6 +352,9 @@ p { margin-bottom: 1em; }
 @media (max-width: 480px) {
     .btn {
         width: 100%; /* Makes buttons full-width on small phones for easier tapping */
+    }
+    .photo-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns on small phones */
     }
 }
 
