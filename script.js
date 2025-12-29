@@ -16,29 +16,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Fundraiser Progress Bar Logic ---
     // Example variables for the progress bar (will be updated manually)
-    const targetGoal = 35000; // R 35,000.00
-    let currentRaised = 12500; // R 12,500.00 (Example start amount - Number updated manually as donations come in!)
-    
+    function updateProgressBar() {
     const progressBar = document.querySelector('.progress-bar-fill');
-    const raisedText = document.querySelector('#raised-amount'); 
+    const raisedElement = document.getElementById('raised-amount'); 
+    const currentRaised = 100; // These would be dynamic in a real app
+    const goal = 35000;
+    const actualPercentage = (currentRaised / goal) * 100; // Calculate percentage or actual math
 
-    // --- Function to calculate and display progress ---
-    if (progressBar) {
-        // Calculate percentage
-        const percentage = Math.floor((currentRaised / targetGoal) * 100);
-
+    // 2. Visual logic: If they have raised money, show at least 3% 
+    // so the bar doesn't "disappear"
+    let visualPercentage = actualPercentage;
+    if (currentRaised > 0 && actualPercentage < 3) {
+        visualPercentage = 3; 
+    }  
+   
+    //const raisedText = document.querySelector('#raised-amount'); 
+    const isDesktop = window.innerWidth >= 768;
+            
     // Animate the bar after a short delay
         setTimeout(() => {
-    const isDesktop = window.innerWidth >= 768;
     if (isDesktop) {
-        // Thermometer mode: Width is 100%, Height is the progress
-        progressBar.style.height = percentage + '%';
-        progressBar.style.width = '100%';
+        // Desktop - Vertical Thermometer mode: Width is 100%, Height is the progress
+        progressBar.style.height = visualPercentage + '%';
+        progressBar.style.width = '100%'; // Ensure it fills the 35px width
     } else {
-        // Traditional mode: Height is 100%, Width is the progress
-        progressBar.style.width = percentage + '%';
-        progressBar.style.height = '100%';
+        // Mobile - Horizontal mode: Height is 100%, Width is the progress
+        progressBar.style.width = visualPercentage + '%';
+        progressBar.style.height = '100%'; // Ensure it fills the 25px height
     }
+
+    // Keep the label showing the REAL number, not the visual tweak
+    raisedElement.textContent = `R${currentRaised.toLocaleString()}`;
 }, 500);
     }
+    // Run on load
+window.addEventListener('load', updateProgressBar);
+// Run on resize so it fixes itself instantly if you rotate a phone
+window.addEventListener('resize', updateProgressBar);
 });
