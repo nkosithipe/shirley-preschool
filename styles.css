@@ -1273,3 +1273,146 @@ p.hours-tag {
         grid-column: span 2; /* 3rd image takes full width */
     }
 }
+
+/* --- CONTACT HUB STYLING (contact.html)--- */
+
+/* Hero Section */
+.contact-hero {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+/* Layout Grid */
+.contact-flex-container {
+    display: flex;
+    flex-direction: column; /* Mobile Default */
+    gap: 40px;
+}
+
+@media (min-width: 992px) {
+    .contact-flex-container {
+        flex-direction: row; /* Desktop Side-by-side */
+        align-items: flex-start;
+    }
+    
+    .contact-info { flex: 1; }
+    .contact-form-wrapper { flex: 1.5; }
+}
+
+/* Contact Info & Hours */
+.contact-info {
+    background: var(--light-bg);
+    margin-top: 60px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.contact-list li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-list a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.hours-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.hours-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+}
+
+/* Styled Form */
+.contact-form-wrapper {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.styled-form .form-group {
+    margin-bottom: 20px;
+}
+
+.styled-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.styled-form input, 
+.styled-form select, 
+.styled-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.styled-form input:focus, 
+.styled-form select:focus, 
+.styled-form textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+/* Map Section */
+.map-container {
+    line-height: 0; /* Removes small gap at bottom of iframe */
+    filter: grayscale(10%) contrast(1.1); /* Slight stylistic touch */
+}
+
+/* Utility Class */
+.w-100 {
+    width: 100%;
+}
+
+/* Mobile Adjustments for Redmi 5A (360px) */
+@media (max-width: 600px) {
+    .contact-hero h1 { font-size: 1.8rem; }
+    .contact-form-wrapper, .contact-info {
+        padding: 20px;
+    }
+    .contact-list li { font-size: 1rem; }
+}
+
+/* --- Terms and Condition's page STYLES --- */
+.legal-block[style] {
+    background-color: #fff9f9; /* Very light warning tint */
+}
+
+.legal-block h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.legal-list li {
+    margin-left: 5px;
+}

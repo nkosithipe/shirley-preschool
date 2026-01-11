@@ -54,3 +54,67 @@ window.addEventListener('load', updateProgressBar);
 // Run on resize so it fixes itself instantly if you rotate a phone
 window.addEventListener('resize', updateProgressBar);
 });
+
+// Function to strip dangerous characters
+function sanitizeInput(str) {
+    return str.replace(/[<>;()]/g, "").trim();
+}
+
+document.getElementById('enquiry-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const messageInput = document.getElementById('message');
+
+    // 1. Final Sanity Check before sending
+    const cleanName = sanitizeInput(nameInput.value);
+    const cleanPhone = sanitizeInput(phoneInput.value);
+    const cleanMessage = sanitizeInput(messageInput.value);
+
+    // 2. Validate length again in JS
+    if (cleanName.length < 2 || cleanPhone.length < 10) {
+        alert("Please ensure your name and phone number are entered correctly.");
+        return;
+    }
+
+    // 3. Prepare data for Formspree
+    const formData = new FormData();
+    formData.append('name', cleanName);
+    formData.append('phone', cleanPhone);
+    formData.append('message', cleanMessage);
+    formData.append('subject', document.getElementById('subject').value);
+
+    // 4. Submit to Formspree
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            handleSuccess(form);
+        } else {
+            throw new Error('Submission failed');
+        }
+    } catch (error) {
+        alert("Connection error. Please try again or call us directly.");
+    }
+});
+
+function handleSuccess(formElement) {
+    const wrapper = formElement.parentElement;
+    wrapper.textContent = ''; 
+    
+    const heading = document.createElement('h3');
+    heading.className = "text-primary";
+    heading.textContent = 'Enquiry Received!';
+    
+    const text = document.createElement('p');
+    text.textContent = 'Thank you. We have securely received your message and will be in touch shortly.';
+
+    wrapper.appendChild(heading);
+    wrapper.appendChild(text);
+}
